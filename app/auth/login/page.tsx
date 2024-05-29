@@ -25,32 +25,6 @@ const LoginModal = () => {
 
   const router = useRouter()
 
-  const loginUser = async () => {
-    
-    router.push('/home')
-    // const { email, password } = data;
-    // try {
-    //   const response = await axios.post("/login", { email, password });
-    //   if (response.data.error) {
-    //     toast.error(response.data.error);
-    //   } else {
-    //     const user: User = {
-    //       id: response.data.id, 
-    //       name: response.data.name, 
-    //       email: data.email,
-    //     };
-    //     setData({
-    //       email: "",
-    //       password: "",
-    //     });
-
-    //     toast.success("Login Successful");
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    //   toast.error("An error occurred while logging in.");
-    // }
-  };
 
   const onToggle = () => {
     router.push('/auth/register')
@@ -101,7 +75,7 @@ const LoginModal = () => {
         </form>
         <div className="p-6 pt-0 grid gap-4">
           <button
-            onClick={loginUser}
+   
             type="submit"
             className="w-full py-2 text-sm font-semibold text-white bg-sky-500 rounded-md hover:bg-sky-400"
           >

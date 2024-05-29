@@ -1,11 +1,6 @@
 "use client"
 
-import React, { useCallback, useState, FormEvent  } from 'react';
-import { toast } from "react-hot-toast";
-
-import { FcGoogle } from "react-icons/fc";
-import { FaGithub } from "react-icons/fa";
-import axios from "axios";
+import React, { useState, FormEvent  } from 'react';
 import { useRouter } from 'next/navigation';
 
 
@@ -25,30 +20,6 @@ const Register = () => {
 
   const router = useRouter()
 
-  const registerUser = async (e: FormEvent) => {
- 
-    // const { name, email, password } = data;
-    // try {
-    //   const response = await axios.post('/register', {
-    //     name, email, password
-    //   });
-    //   if (response.data.error) {
-    //     toast.error(response.data.error);
-    //   } else {
-    //     setData({
-    //       name: '',
-    //       email: '',
-    //       password: '',
-    //     });
-    //     toast.success('Login Successful');
-   
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    //   toast.error('An error occurred while registering.');
-    // }
-  };
-  
 
   const onToggle = () => {
     router.push('/auth/login')
@@ -101,7 +72,7 @@ const Register = () => {
           </div>
         </form>
         <div className='p-6 pt-0 grid gap-4'>
-          <button onClick={registerUser} type="submit" className="w-full py-2 text-sm font-semibold text-white bg-sky-500 rounded-md hover:bg-sky-400">
+          <button type="submit" className="w-full py-2 text-sm font-semibold text-white bg-sky-500 rounded-md hover:bg-sky-400">
             Daftar
           </button>
           <div className="relative">
