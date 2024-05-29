@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 
 const calculateCycleDetails = (startDate: string | number | Date) => {
   const cycleLength = 28; // default cycle length
-  const lutealPhaseLength = 14; // typical luteal phase length
+  const lutealPhaseLength = 14;
 
   const lastPeriod = startDate;
   const nextPeriod = new Date(startDate);
