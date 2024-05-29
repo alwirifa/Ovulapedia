@@ -50,7 +50,6 @@ const Register = () => {
   };
   
 
-  console.log("LoginModal is open:", open);
   const onToggle = () => {
     router.push('/auth/login')
   }
