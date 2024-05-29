@@ -1,35 +1,35 @@
 "use client"
 
+"use client"
+
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import toast from "react-hot-toast";
 
-interface RegisterData {
-  name: string;
+interface AdminLoginData {
   email: string;
   password: string;
-  age: string; // Storing age as string for simplicity, can be changed to number
 }
 
-const RegisterModal = () => {
-  const [data, setData] = useState<RegisterData>({ name: "", email: "", password: "", age: "" });
+const AdminLoginModal = () => {
+  const [data, setData] = useState<AdminLoginData>({ email: "", password: "" });
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
   const onToggle = () => {
-    router.push('/auth/login');
+    router.push('/auth/register');
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:8000/register', data);
+      const response = await axios.post('http://localhost:8000/login-admin', data);
       if (response.data.error === false) {
-        toast.success('Registration successful!');
-        // Redirect to login page after successful registration
-        router.push('/auth/login');
+        toast.success('Admin login successful!');
+        // Redirect to the admin dashboard or desired page after successful login
+        router.push('/admin-dashboard');
       } else {
         toast.error(response.data.message);
       }
@@ -44,26 +44,12 @@ const RegisterModal = () => {
     <div className="h-screen w-full flex justify-center items-center bg-pink-100">
       <div className="flex flex-col w-[400px] border rounded-xl bg-white">
         <div className="flex flex-col p-6 space-y-1">
-          <h3 className="font-semibold tracking-tight text-xl">Daftar</h3>
+          <h3 className="font-semibold tracking-tight text-xl">Admin Masuk</h3>
           <p className="text-sm text-zinc-500">
-            Buat akun baru Anda.
+            Masukkan kredensial admin Anda untuk masuk.
           </p>
         </div>
         <form className="p-6 pt-0 grid gap-4" onSubmit={handleSubmit}>
-          <div className="grid gap-2">
-            <label htmlFor="name" className="block text-sm font-medium leading-none text-zinc-950">
-              Nama
-            </label>
-            <input
-              type="text"
-              id="name"
-              placeholder="Nama Anda"
-              className="h-10 w-full border rounded-md px-3 py-2 text-sm outline-none placeholder:text-zinc-500 focus:border-sky-600"
-              value={data.name}
-              onChange={(e) => setData({ ...data, name: e.target.value })}
-              required
-            />
-          </div>
           <div className="grid gap-2">
             <label htmlFor="email" className="block text-sm font-medium leading-none text-zinc-950">
               Email
@@ -71,7 +57,7 @@ const RegisterModal = () => {
             <input
               type="email"
               id="email"
-              placeholder="gojosatoru@example.com"
+              placeholder="admin@example.com"
               className="h-10 w-full border rounded-md px-3 py-2 text-sm outline-none placeholder:text-zinc-500 focus:border-sky-600"
               value={data.email}
               onChange={(e) => setData({ ...data, email: e.target.value })}
@@ -92,35 +78,21 @@ const RegisterModal = () => {
               required
             />
           </div>
-          <div className="grid gap-2">
-            <label htmlFor="age" className="block text-sm font-medium leading-none text-zinc-950">
-              Umur
-            </label>
-            <input
-              type="number"
-              id="age"
-              placeholder="Masukkan umur Anda"
-              className="h-10 w-full border rounded-md px-3 py-2 text-sm outline-none placeholder:text-zinc-500 focus:border-sky-600"
-              value={data.age}
-              onChange={(e) => setData({ ...data, age: e.target.value })}
-              required
-            />
-          </div>
           <button
             type="submit"
             className="w-full py-2 text-sm font-semibold text-white bg-sky-500 rounded-md hover:bg-sky-400"
             disabled={loading}
           >
-            {loading ? 'Mendaftar...' : 'Daftar'}
+            {loading ? 'Logging in...' : 'Masuk'}
           </button>
         </form>
         <div className="p-6 pt-0 grid gap-4">
           <div className="flex gap-1">
             <p className="text-sm text-zinc-500">
-              Sudah memiliki akun?
+              Bukan admin? 
             </p>
             <p onClick={onToggle} className="text-sm text-sky-500 hover:underline cursor-pointer">
-              Masuk
+              Daftar sebagai pengguna
             </p>
           </div>
         </div>
@@ -129,4 +101,4 @@ const RegisterModal = () => {
   );
 };
 
-export default RegisterModal;
+export default AdminLoginModal;

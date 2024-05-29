@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 
 const calculateCycleDetails = (startDate: string | number | Date) => {
-  const cycleLength = 28; // default cycle length
+  const cycleLength = 28; 
   const lutealPhaseLength = 14;
 
   const lastPeriod = startDate;
@@ -44,9 +44,9 @@ const Page = () => {
   };
 
   return (
-    <div className='h-screen w-full flex flex-col justify-center items-center bg-sky-500 p-4'>
+    <div className='h-screen w-full flex flex-col justify-center items-center bg-pink-100 p-4'>
       <div className='mb-8'>
-        <h1 className='text-5xl font-semibold text-white text-center'>
+        <h1 className='text-5xl font-semibold text-sky-500 text-center'>
           Kenali dan kendalikan <br /> siklus menstruasimu
         </h1>
       </div>
@@ -76,7 +76,7 @@ const Page = () => {
           <p>{cycleDetails.ovulation.toDateString()}</p>
         </div>
       </div>
-      <button onClick={handleLogout} className='mt-5 px-4 py-3 rounded-md text-white text-sm font-semibold bg-pink-500 '>Logout</button>
+      <button onClick={handleLogout} className='mt-5 px-4 py-3 rounded-md text-white text-sm font-semibold bg-sky-500 '>Logout</button>
     </div>
   );
 };
