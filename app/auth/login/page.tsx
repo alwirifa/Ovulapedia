@@ -28,28 +28,28 @@ const LoginModal = () => {
   const loginUser = async () => {
     
     router.push('/home')
-    const { email, password } = data;
-    try {
-      const response = await axios.post("/login", { email, password });
-      if (response.data.error) {
-        toast.error(response.data.error);
-      } else {
-        const user: User = {
-          id: response.data.id, 
-          name: response.data.name, 
-          email: data.email,
-        };
-        setData({
-          email: "",
-          password: "",
-        });
+    // const { email, password } = data;
+    // try {
+    //   const response = await axios.post("/login", { email, password });
+    //   if (response.data.error) {
+    //     toast.error(response.data.error);
+    //   } else {
+    //     const user: User = {
+    //       id: response.data.id, 
+    //       name: response.data.name, 
+    //       email: data.email,
+    //     };
+    //     setData({
+    //       email: "",
+    //       password: "",
+    //     });
 
-        toast.success("Login Successful");
-      }
-    } catch (err) {
-      console.log(err);
-      toast.error("An error occurred while logging in.");
-    }
+    //     toast.success("Login Successful");
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    //   toast.error("An error occurred while logging in.");
+    // }
   };
 
   const onToggle = () => {

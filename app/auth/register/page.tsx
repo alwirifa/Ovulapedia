@@ -27,26 +27,26 @@ const Register = () => {
 
   const registerUser = async (e: FormEvent) => {
  
-    const { name, email, password } = data;
-    try {
-      const response = await axios.post('/register', {
-        name, email, password
-      });
-      if (response.data.error) {
-        toast.error(response.data.error);
-      } else {
-        setData({
-          name: '',
-          email: '',
-          password: '',
-        });
-        toast.success('Login Successful');
+    // const { name, email, password } = data;
+    // try {
+    //   const response = await axios.post('/register', {
+    //     name, email, password
+    //   });
+    //   if (response.data.error) {
+    //     toast.error(response.data.error);
+    //   } else {
+    //     setData({
+    //       name: '',
+    //       email: '',
+    //       password: '',
+    //     });
+    //     toast.success('Login Successful');
    
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error('An error occurred while registering.');
-    }
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    //   toast.error('An error occurred while registering.');
+    // }
   };
   
 
