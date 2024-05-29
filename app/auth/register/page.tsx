@@ -20,11 +20,9 @@ const Register = () => {
 
   const router = useRouter()
 
-
   const onToggle = () => {
     router.push('/auth/login')
   }
-
 
   return (
     <div className='h-screen w-full flex justify-center items-center bg-pink-100'>

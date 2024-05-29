@@ -3,7 +3,6 @@
 
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
-import 'tailwindcss/tailwind.css';
 
 const calculateCycleDetails = (startDate: string | number | Date) => {
   const cycleLength = 28; // default cycle length
