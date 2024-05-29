@@ -1,12 +1,11 @@
 "use client"
 
+
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import 'tailwindcss/tailwind.css';
 
-const calculateCycleDetails = (startDate) => {
+const calculateCycleDetails = (startDate: string | number | Date) => {
   const cycleLength = 28; // default cycle length
   const lutealPhaseLength = 14; // typical luteal phase length
 
@@ -30,19 +29,20 @@ const calculateCycleDetails = (startDate) => {
   };
 };
 
-const Page = (props) => {
+const Page = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [cycleDetails, setCycleDetails] = useState(calculateCycleDetails(new Date()));
-  const router = useRouter()
+  const router = useRouter();
 
-  const handleDateChange = (date) => {
+  const handleDateChange = (event: { target: { value: string | number | Date; }; }) => {
+    const date = new Date(event.target.value);
     setStartDate(date);
     setCycleDetails(calculateCycleDetails(date));
   };
 
   const handleLogout = () => {
-    router.push('/')
-  }
+    router.push('/');
+  };
 
   return (
     <div className='h-screen w-full flex flex-col justify-center items-center bg-sky-500 p-4'>
@@ -52,11 +52,11 @@ const Page = (props) => {
         </h1>
       </div>
       <div className='mb-8'>
-        <DatePicker 
-          selected={startDate} 
-          onChange={handleDateChange} 
+        <input
+          type='date'
+          value={startDate.toISOString().substr(0, 10)}
+          onChange={handleDateChange}
           className='p-2 border rounded'
-          dateFormat='yyyy/MM/dd'
         />
       </div>
       <div className='grid grid-cols-1 gap-4'>
@@ -70,7 +70,7 @@ const Page = (props) => {
         </div>
         <div className='bg-white p-4 rounded shadow-lg'>
           <h2 className='text-xl font-semibold'>Last Period</h2>
-          <p>{cycleDetails.lastPeriod.toDateString()}</p>
+          <p>{cycleDetails.lastPeriod.toString()}</p>
         </div>
         <div className='bg-white p-4 rounded shadow-lg'>
           <h2 className='text-xl font-semibold'>Ovulation</h2>

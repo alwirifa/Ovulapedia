@@ -15,16 +15,8 @@ interface RegisterData {
   password: string;
 }
 
-type SetModalModeType = React.Dispatch<React.SetStateAction<boolean>>;
 
-type RegisterModalProps = {
-  open: boolean;
-  onClose: () => void;
-  setIsLoginModalOpen: SetModalModeType;
-  setIsRegisterModalOpen: SetModalModeType
-};
-
-const Register: React.FC<RegisterModalProps> = ({ open, onClose, setIsLoginModalOpen, setIsRegisterModalOpen }) => {
+const Register = () => {
   const [data, setData] = useState<RegisterData>({
     name: '',
     email: '',
@@ -34,7 +26,7 @@ const Register: React.FC<RegisterModalProps> = ({ open, onClose, setIsLoginModal
   const router = useRouter()
 
   const registerUser = async (e: FormEvent) => {
-    e.preventDefault();
+ 
     const { name, email, password } = data;
     try {
       const response = await axios.post('/register', {
@@ -49,8 +41,7 @@ const Register: React.FC<RegisterModalProps> = ({ open, onClose, setIsLoginModal
           password: '',
         });
         toast.success('Login Successful');
-        setIsRegisterModalOpen(false);  // Membuka modal register
-        setIsLoginModalOpen(true)
+   
       }
     } catch (error) {
       console.log(error);
@@ -66,7 +57,7 @@ const Register: React.FC<RegisterModalProps> = ({ open, onClose, setIsLoginModal
 
 
   return (
-    <div className='h-screen w-full flex justify-center items-center bg-sky-500'>
+    <div className='h-screen w-full flex justify-center items-center bg-pink-100'>
       <div className="flex flex-col w-[400px] border rounded-xl bg-white">
         <div className='flex flex-col p-6 space-y-1'>
           <h3 className="font-semibold tracking-tight text-xl">Daftar Sekarang</h3>
@@ -111,7 +102,7 @@ const Register: React.FC<RegisterModalProps> = ({ open, onClose, setIsLoginModal
           </div>
         </form>
         <div className='p-6 pt-0 grid gap-4'>
-          <button onClick={registerUser} type="submit" className="w-full py-2 text-sm font-semibold text-white bg-pink-500 rounded-md hover:bg-pink-400">
+          <button onClick={registerUser} type="submit" className="w-full py-2 text-sm font-semibold text-white bg-sky-500 rounded-md hover:bg-sky-400">
             Daftar
           </button>
           <div className="relative">
@@ -122,7 +113,7 @@ const Register: React.FC<RegisterModalProps> = ({ open, onClose, setIsLoginModal
           </div>
           <div className='flex  gap-1'>
             <p className='text-sm text-zinc-500'>Sudah punya akun Ovulapedia?</p>
-            <p onClick={onToggle} className='text-sm text-pink-500 hover:underline cursor-pointer'>Masuk</p>
+            <p onClick={onToggle} className='text-sm text-sky-500 hover:underline cursor-pointer'>Masuk</p>
           </div>
         </div>
       </div>
